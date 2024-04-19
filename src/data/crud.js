@@ -1,24 +1,24 @@
 
 
-import { collection, getDocs, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore/lite'
+import { collection, getDocs, addDoc, deleteDoc, doc} from 'firebase/firestore/lite'
 import { db } from './fire.js'
 
 
-const collectionName = 'employees'
+const collectionName = 'shoppingItems'
 const collectionRef = collection(db, collectionName)
 
 
-async function getEmployees() {
-	// Skapa en referens till collection "employees" i databasen
-	const employeeCollection = collection(db, collectionName)
+async function getShoppingItems() {
+	// Skapa en referens till collection "shoppingItems" i databasen
+	const shoppingItemCollection = collection(db, collectionName)
 
-	// Hämta alla dokument i collection "employees"
-	const employeeSnapshot = await getDocs(employeeCollection)
-	// console.log('getEmployees: snapshot is', employeeSnapshot)
+	// Hämta alla dokument i collection "shoppingItems"
+	const shoppingItemSnapshot = await getDocs(shoppingItemCollection)
+	// console.log('getShoppingItems: snapshot is', shoppingItemSnapshot)
 
 
-	const employeeList = employeeSnapshot.docs.map(doc => withKey(doc))
-	return employeeList
+	const shoppingItemList = shoppingItemSnapshot.docs.map(doc => withKey(doc))
+	return shoppingItemList
 }
 
 // Use this if you don't have an id in the objects themselves
@@ -28,23 +28,17 @@ function withKey(doc) {
 	return o
 }
 
-async function addEmployee(employee) {
-	// referens till collection 'employees'
+async function addShoppingItem(employee) {
+	// referens till collection 'shoppingItems'
 	await addDoc(collectionRef, employee)
 }
 
-async function deleteEmployee(key) {
+async function deleteShoppingItem(key) {
 	const docRef = doc(collectionRef, key)
-	// console.log('deleteEmployee: ', docRef);
+	// console.log('deleteShoppingItem: ', docRef);
 	deleteDoc(docRef)
 }
 
-async function editEmployee(key, updatedEmployee) {
-    const docRef = doc(collectionRef, key); 
-    await updateDoc(docRef, updatedEmployee); 
-}
 
 
-
-
-export { getEmployees, addEmployee, deleteEmployee, editEmployee }
+export { getShoppingItems, addShoppingItem, deleteShoppingItem}

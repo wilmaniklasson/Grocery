@@ -1,24 +1,24 @@
 import { useState } from 'react'
 import { useStore } from '../data/store.js'
-import { addEmployee, getEmployees } from '../data/crud.js'
+import { addShoppingItem, getShoppingItems } from '../data/crud.js'
 
-const AddEmployee = () => {
+const AddShoppingItem = () => {
 	const [isLoading, setIsLoading] = useState(false)
 	const [name, setName] = useState('')
-	const [occupation, setOccupation] = useState('')
-	const setEmployees = useStore(state => state.setEmployees)
+	const [quantity, setQuantity] = useState('')
+	const setShoppingItems = useStore(state => state.setShoppingItems)
 
 	const handleSubmit = async (event) => {
         setIsLoading(true)
 		event.preventDefault()
-		const newEmployee = { name: name, occupation: occupation }
+		const newShoppingItem = { name: name, quantity: quantity }
 		try {
-			await addEmployee(newEmployee)
+			await addShoppingItem(newShoppingItem)
 			setName('')
-			setOccupation('')
-			setEmployees(await getEmployees())
+			setQuantity('')
+			setShoppingItems(await getShoppingItems())
 		} catch {
-			alert('Failed to add employee')
+			alert('Failed to add shoppingItem')
 
 		} finally {
 			setIsLoading(false)
@@ -37,8 +37,8 @@ const AddEmployee = () => {
 
 			<section className="column">
 				<input type="number"
-					value={occupation}
-					onChange={e => setOccupation(e.target.value)}
+					value={quantity}
+					onChange={e => setQuantity(e.target.value)}
 					placeholder='Antal'/>
 			</section>
 
@@ -51,4 +51,4 @@ const AddEmployee = () => {
 	)
 }
 
-export default AddEmployee
+export default AddShoppingItem

@@ -1,8 +1,8 @@
 import React from 'react';
 import "./List.css";
 import { Link } from 'react-router-dom';
-import Employees from '../components/Employees.jsx'
-import AddEmployee from '../components/AddEmployee.jsx'
+import ShoppingItem from '../components/ShoppingItem.jsx';
+import AddShoppingItem from '../components/AddShoppingItem.jsx';
 
 
 const List = () => {
@@ -13,9 +13,9 @@ const List = () => {
             </Link>
 
             <h1>Inköpslista</h1>
-            <AddEmployee />
+            <AddShoppingItem />
 
-            <Employees />
+            <ShoppingItem />
 
             
         </div>

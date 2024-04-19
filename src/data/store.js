@@ -1,21 +1,21 @@
 import { create } from 'zustand'
-import AddEmployee from '../components/AddEmployee'
+import AddShoppingItem from '../components/AddShoppingItem'
 
 // set, create
-
 const useStore = create(set => ({
-	employees: [ ],
+    shoppingItems: [], // Ändra från shoppingItem till shoppingItems
 
-	setEmployees: newEmployees => set(state => ({
-        employees: newEmployees
+    setShoppingItems: newShoppingItems => set(state => ({
+        shoppingItems: newShoppingItems // Ändra till shoppingItems
     })),
 
-	addEmployee: employee => set(state => ({
-		employees: [ ...state.employees, employee ]
-	})),
-    deliteEmployee: employee => set(state => ({
-        employees: state.employees.filter(e => e.key !== employee.key)
+    addShoppingItem: shoppingItem => set(state => ({
+        shoppingItems: [...state.shoppingItems, shoppingItem]
+    })),
+    deleteShoppingItem: shoppingItem => set(state => ({
+        shoppingItems: state.shoppingItems.filter(e => e.key !== shoppingItem.key)
     }))
 }))
 
 export { useStore }
+
